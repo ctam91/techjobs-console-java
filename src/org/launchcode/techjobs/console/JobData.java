@@ -87,6 +87,38 @@ public class JobData {
         return jobs;
     }
 
+
+    /**
+     * Returns results of search the jobs data by key/value, using
+     * inclusion of the search term.
+     *
+     * For example, searching for employer "Enterprise" will include results
+     * with "Enterprise Holdings, Inc".
+     *
+     * @param searchTerm   term that should be searched.
+     * @return List of all jobs matching the criteria
+     */
+    public static ArrayList<HashMap<String, String>> findByValue(String searchTerm) {
+
+        // load data, if not already loaded
+
+        loadData();
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+            for(String key : row.keySet()){
+                String value= row.get(key);
+                if(value.contains(searchTerm) || key.contains(searchTerm)){
+                    jobs.add(row);
+                }
+            }
+
+        }
+
+        return jobs;
+    }
+
+
     /**
      * Read in data from a CSV file and store it in a list
      */
