@@ -3,7 +3,6 @@ package org.launchcode.techjobs.console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -65,9 +64,9 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    printJobs(JobData.findByValue(searchTerm));
+                    printJobs(JobData.findByValue(searchTerm.toLowerCase()));
                 } else {
-                    printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+                    printJobs(JobData.findByColumnAndValue(searchField, searchTerm.toLowerCase()));
                 }
             }
         }
@@ -118,9 +117,9 @@ public class TechJobs {
     // iterate through each key in the HashMap
     // print out keys and their values
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        String message = "*****\n";
+        String message = "\n" + someJobs.size() + " results were found.\n\n*****\n\n";
         if (someJobs.size() == 0) {
-            message = "No results were found. Please try a different search";
+            message += "No results were found. Please try a different search";
         } else {
             for (HashMap<String, String> job : someJobs) {
                 for (String key : job.keySet()) {
