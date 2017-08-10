@@ -72,32 +72,35 @@ public class TechJobs {
         }
     }
 
-    // ﻿Returns the key of the selected item from the choices Dictionary
-    // Method which takes in a String and HashMap as its parameters.
+    /**
+     * @param menuHeader either "View jobs by:" or "Search by:", depending on user input
+     * @param choices includes the options/columns available , depending on user input
+     *@return key of the selected item from the choices Dictionary
+     */
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
 
-        Integer choiceIdx;                                          //create an Integer called choiceIdx
-        Boolean validChoice = false;                                // create a Boolean called validChoice and initialize it to false. Do While loop will keep going until boolean is True (user input is valid)
-        String[] choiceKeys = new String[choices.size()];           // create an array of strings called choiceKeys, which has the same size as our choices HashMap
+        Integer choiceIdx;
+        Boolean validChoice = false;                                // Do While loop will keep going until boolean is True (user input is valid)
+        String[] choiceKeys = new String[choices.size()];           // create an array, which has the same size as our choices HashMap
 
-        // Put the choices in an ordered structure so we can
-        // associate an integer with each one
-        Integer i = 0;                                              // create 'i' for the purpose of associating each choice with an integer.
-        for (String choiceKey : choices.keySet()) {                 // for each key in choices(the param). choices.keySet() returns set view of keys in HashMap).
-            choiceKeys[i] = choiceKey;                              // set choice to the value of choices[i]. Basically, put the key options available from the HashMap parameter into a new array called choiceKeys, which will be iterated later in our do while
+        // Put the choices in an ordered structure (choiceKeys) so we can associate an integer with each one
+        Integer i = 0;
+        for (String choiceKey : choices.keySet()) {
+            choiceKeys[i] = choiceKey;
             i++;
         }
 
         do {
 
-            System.out.println("\n" + menuHeader);                 // print out menuHeader (parameter)
+            System.out.println("\n" + menuHeader);
 
-            // Print available choices
-            for (Integer j = 0; j < choiceKeys.length; j++) {      // for each option in our choiceKey array, print out the integer and option
+            // For each option in our choiceKey array, print out the integer and option
+            for (Integer j = 0; j < choiceKeys.length; j++) {
                 System.out.println("" + j + " - " + choices.get(choiceKeys[j]));
             }
 
-            choiceIdx = in.nextInt();                              // assign value of user input to choiceIdx variable
+            // Grab user input and store it in choiceIdx variable
+            choiceIdx = in.nextInt();
             in.nextLine();
 
             // Validate user's input
@@ -112,10 +115,10 @@ public class TechJobs {
         return choiceKeys[choiceIdx];                               // return content of choice. This String corresponds to the chosen key (from choices, which will be either actionChoices or columnChoices).
     }
 
-    // Print a list of jobs
-    // iterate through ArrayList and access each HashMap
-    // iterate through each key in the HashMap
-    // print out keys and their values
+    /**
+     * Print a job search results
+     * @param someJobs ArrayList of results
+     */
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         String message = "\n" + someJobs.size() + " results were found.\n\n*****\n\n";
         if (someJobs.size() == 0) {

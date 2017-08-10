@@ -48,6 +48,10 @@ public class JobData {
         return values;
     }
 
+    /**
+     * Creates ArrayList from existing data in csv
+     * @return ArrayList of HashMap key value pairs called jobsArrayList
+     */
     public static ArrayList<HashMap<String, String>> findAll() {
 
         // load data, if not already loaded
