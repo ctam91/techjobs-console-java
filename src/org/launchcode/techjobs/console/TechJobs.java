@@ -104,15 +104,15 @@ public class TechJobs {
             in.nextLine();
 
             // Validate user's input
-            if (choiceIdx < 0 || choiceIdx >= choiceKeys.length) {  // if user input is less than 0 or greater than the array length, print an error.
+            if (choiceIdx < 0 || choiceIdx >= choiceKeys.length) {
                 System.out.println("Invalid choice. Try again.");
-            } else {                                                  // if user input is valid, assign true to validChoice and move on to return statement
+            } else {
                 validChoice = true;
             }
 
-        } while (!validChoice);                                      // keep looping until validChoice is true
+        } while (!validChoice);
 
-        return choiceKeys[choiceIdx];                               // return content of choice. This String corresponds to the chosen key (from choices, which will be either actionChoices or columnChoices).
+        return choiceKeys[choiceIdx];
     }
 
     /**
